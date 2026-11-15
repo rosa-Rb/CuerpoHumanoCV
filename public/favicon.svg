@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Cuerpo Humano Interactivo">
+  <rect width="32" height="32" rx="8" fill="#E4574D"/>
+  <circle cx="16" cy="10" r="4.7" fill="#FFF4EA"/>
+  <path fill="#FFF4EA" d="M7 28c1.1-7 4.2-10.4 9-10.4S23.9 21 25 28H7z"/>
+</svg>

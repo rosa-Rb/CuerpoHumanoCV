@@ -1,0 +1,617 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Nunito", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fredoka", "Nunito", ui-sans-serif, sans-serif;
+
+  /* Base más suave y amigable */
+  --color-cream: #fef9f0;
+  --color-cream-deep: #f5edd9;
+  --color-ink: #2d3436;
+  --color-muted: #636e72;
+  --color-card: #ffffff;
+  --color-line: #e8e0d0;
+
+  /* Acentos alegres y neutrales */
+  --color-teal: #00b894;          /* verde menta vivo */
+  --color-teal-deep: #00a884;
+  --color-coral: #fd79a8;         /* coral suave (no rosa fuerte) */
+  --color-gold: #fdcb6e;          /* amarillo cálido */
+
+  /* Colores del cuerpo (más juguetones) */
+  --color-bone: #f1e4c8;
+  --color-bone-lite: #faf3e3;
+  --color-bone-deep: #d4b483;
+  --color-muscle-lite: #ff9ff3;   /* lila suave */
+  --color-muscle-deep: #e17055;
+  --color-heart: #ff6b6b;
+  --color-lung: #74b9ff;          /* azul cielo suave */
+  --color-brain: #a29bfe;         /* lila */
+  --color-liver: #e17055;
+  --color-stomach: #fdcb6e;
+  --color-gut: #55efc4;
+  --color-iris: #6c5ce7;
+
+  --radius-card: 1.5rem;
+}
+
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  html,
+  body {
+    background: var(--color-cream);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    min-height: 100%;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  h1,
+  h2,
+  .eyebrow {
+    font-family: var(--font-display);
+  }
+}
+
+
+@layer utilities {
+  .container-page {
+    width: min(1120px, calc(100% - 2rem));
+    margin-inline: auto;
+  }
+}
+
+
+.shell {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(900px 280px at 10% -10%, color-mix(in srgb, var(--color-teal) 18%, transparent), transparent 70%),
+    var(--color-cream);
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.85rem clamp(1rem, 5vw, 5rem) 0.7rem;
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-teal-deep);
+}
+
+.topbar h1 {
+  margin: 0;
+  font-size: 1.7rem;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.find-btn,
+.video-btn,
+.text-btn,
+.icon-btn,
+.chip,
+.tone,
+.pill {
+  border: 0;
+  font: inherit;
+}
+
+.find-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 2.75rem;
+  padding: 0 0.95rem;
+  border-radius: 999px;
+  background: var(--color-teal);
+  color: var(--color-card);
+  font-weight: 800;
+}
+
+.find-btn.on {
+  background: var(--color-coral);
+}
+
+.systems {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0 clamp(1rem, 5vw, 5rem) 0.75rem;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 2.75rem;
+  padding: 0 0.9rem;
+  border-radius: 999px;
+  background: var(--color-card);
+  color: var(--color-ink);
+  border: 1px solid var(--color-line);
+  font-weight: 800;
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
+
+.chip[data-on="true"] {
+  color: var(--color-card);
+  border-color: transparent;
+}
+
+.chip[data-system="piel"][data-on="true"] { background: #c88858; color: var(--color-ink); }
+.chip[data-system="huesos"][data-on="true"] { background: var(--color-bone-deep); }
+.chip[data-system="musculos"][data-on="true"] { background: var(--color-muscle-deep); }
+.chip[data-system="organos"][data-on="true"] { background: var(--color-coral); }
+.chip[data-system="articulaciones"][data-on="true"] { background: var(--color-gold); color: var(--color-ink); }
+.chip[data-system="sentidos"][data-on="true"] { background: var(--color-teal); }
+
+.workspace {
+  display: grid;
+  gap: 0.85rem;
+  padding: 0 clamp(1rem, 5vw, 5rem) 1.25rem;
+}
+
+.stage-col,
+.side {
+  min-width: 0;
+  align-self: start;
+}
+
+.quest {
+  display: grid;
+  grid-template-columns: 3.25rem 1fr auto;
+  gap: 0.7rem;
+  align-items: center;
+  margin-bottom: 0.7rem;
+  padding: 0.55rem 0.7rem;
+  background: var(--color-card);
+  border: 1px solid var(--color-line);
+  border-radius: 1.1rem;
+}
+
+.quest.good {
+  border-color: var(--color-teal);
+}
+
+.quest p {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.quest strong {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+}
+
+.quest .thumb,
+.quest .thumb-fallback {
+  width: 3.25rem;
+  height: 3.25rem;
+}
+
+.stars {
+  display: flex;
+  gap: 0.1rem;
+  grid-column: 2 / -1;
+}
+
+.star {
+  color: var(--color-line);
+}
+
+.star.on {
+  color: var(--color-gold);
+  fill: var(--color-gold);
+}
+
+.stage {
+  position: relative;
+  width: min(100%, 440px);
+  margin: 0 auto;
+  aspect-ratio: 400 / 900;
+  display: grid;
+  place-items: center;
+  background: var(--color-card);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: 0 18px 40px color-mix(in srgb, var(--color-ink) 8%, transparent);
+}
+
+.body-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.wash {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.wash.on {
+  animation: wash 0.5s ease;
+}
+
+.wash[data-system="huesos"] { background: var(--color-bone); }
+.wash[data-system="musculos"] { background: var(--color-muscle-lite); }
+.wash[data-system="organos"] { background: var(--color-coral); }
+.wash[data-system="articulaciones"] { background: var(--color-gold); }
+.wash[data-system="sentidos"] { background: var(--color-teal); }
+.wash[data-system="piel"] { background: #e0aa78; }
+
+.controls {
+  display: grid;
+  gap: 0.65rem;
+  margin-top: 0.75rem;
+}
+
+.slider {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 0.55rem;
+  align-items: center;
+  color: var(--color-muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.slider input {
+  width: 100%;
+  accent-color: var(--color-teal);
+  height: 1.6rem;
+}
+
+.tones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.tone {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 2.75rem;
+  padding: 0 0.75rem;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--color-ink);
+  font-weight: 800;
+  border: 1px solid transparent;
+}
+
+.tone.on {
+  background: var(--color-card);
+  border-color: var(--color-line);
+}
+
+.swatch {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-line);
+}
+
+.tone[data-tone="claro"] .swatch { background: #f3c9a6; }
+.tone[data-tone="medio"] .swatch { background: #e0aa78; }
+.tone[data-tone="profundo"] .swatch { background: #8d5a3c; }
+
+.tone-claro { --skin-base: #f3c9a6; --skin-shade: #e0ae88; --skin-deep: #c99270; --hair: #4a3428; --pin: #c88858; }
+.tone-medio { --skin-base: #e0aa78; --skin-shade: #c88858; --skin-deep: #a86c40; --hair: #3a261c; --pin: #c88858; }
+.tone-profundo { --skin-base: #8d5a3c; --skin-shade: #734628; --skin-deep: #5c381f; --hair: #1b120e; --pin: #8d5a3c; }
+
+.sys-huesos { --pin: var(--color-bone-deep); }
+.sys-musculos { --pin: var(--color-muscle-deep); }
+.sys-organos { --pin: var(--color-coral); }
+.sys-articulaciones { --pin: #b45309; }
+.sys-sentidos { --pin: var(--color-teal); }
+.sys-piel { --pin: #a86c40; }
+
+.story {
+  display: grid;
+  grid-template-columns: minmax(0, 7.5rem) minmax(0, 1fr);
+  gap: 0.8rem;
+  padding: 0.7rem;
+  background: var(--color-card);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+  align-items: center;
+  min-width: 0;
+}
+
+.story-img,
+.story .thumb-fallback.large {
+  width: 100%;
+  height: 7.5rem;
+  object-fit: contain;
+  background: var(--color-cream);
+  border-radius: 1rem;
+}
+
+.story-copy {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.story-copy h2 {
+  margin: 0.1rem 0;
+  font-size: 1.45rem;
+  line-height: 1.05;
+}
+
+.story-copy p {
+  margin: 0;
+  color: var(--color-muted);
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.dato {
+  display: inline-flex;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  margin: 0;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-gold) 35%, var(--color-card));
+  color: var(--color-ink);
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.video-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.65rem;
+  min-height: 2.75rem;
+  padding: 0 0.9rem;
+  border-radius: 999px;
+  background: var(--color-teal);
+  color: var(--color-card);
+  font-weight: 800;
+}
+
+.pills {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 5.4rem), 1fr));
+  gap: 0.55rem;
+  padding: 0.75rem 0 0.2rem;
+}
+
+.pill {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 0.3rem;
+  min-width: 5.4rem;
+  padding: 0.4rem 0.35rem 0.55rem;
+  border-radius: 1rem;
+  background: var(--color-card);
+  color: var(--color-ink);
+  border: 2px solid transparent;
+  font-weight: 800;
+  font-size: 0.82rem;
+  min-width: 0;
+}
+
+.pill.on {
+  border-color: var(--color-teal);
+}
+
+.thumb,
+.thumb-fallback {
+  width: 4.4rem;
+  height: 4.4rem;
+  object-fit: contain;
+  border-radius: 0.8rem;
+  background: var(--color-cream);
+}
+
+.thumb-fallback {
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  color: var(--color-teal-deep);
+}
+
+.seen {
+  position: absolute;
+  top: 0.35rem;
+  right: 0.35rem;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 999px;
+  background: var(--color-teal);
+}
+
+.credit {
+  margin: 0.7rem 0 0;
+  color: var(--color-muted);
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+.hit {
+  cursor: pointer;
+}
+
+.tag {
+  pointer-events: none;
+}
+
+.is-hot {
+  filter: url(#cr-glow);
+}
+
+.figure-root {
+  transition: transform 560ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.lungs-live,
+.heart-live,
+.pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: color-mix(in srgb, var(--color-ink) 46%, transparent);
+  z-index: 40;
+}
+
+.video-dialog {
+  position: fixed;
+  z-index: 41;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(920px, calc(100vw - 1.5rem));
+  background: var(--color-ink);
+  color: var(--color-card);
+  border-radius: 1.2rem;
+  padding: 0.8rem;
+  box-shadow: 0 24px 60px color-mix(in srgb, var(--color-ink) 40%, transparent);
+}
+
+.video-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.6rem;
+}
+
+.video-head h2 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.icon-btn {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-card) 12%, transparent);
+  color: var(--color-card);
+}
+
+.player {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: 0.8rem;
+  background: black;
+}
+
+.yt-link {
+  display: inline-flex;
+  margin-top: 0.7rem;
+  color: var(--color-gold);
+  font-weight: 800;
+}
+
+.text-btn {
+  min-height: 2.75rem;
+  padding: 0 0.7rem;
+  border-radius: 999px;
+  background: var(--color-teal);
+  color: var(--color-card);
+  font-weight: 800;
+}
+
+@media (min-width: 960px) {
+  .shell {
+    min-height: 100dvh;
+  }
+
+  .workspace {
+    grid-template-columns: minmax(320px, 460px) minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .stage {
+    width: 100%;
+    height: min(74dvh, 760px);
+    aspect-ratio: auto;
+  }
+
+  .side {
+    min-width: 0;
+  }
+
+  .story {
+    grid-template-columns: minmax(0, 42%) minmax(0, 1fr);
+  }
+
+  .story-img,
+  .story .thumb-fallback.large {
+    height: clamp(9rem, 20vw, 15rem);
+  }
+}
+
+@media (max-width: 600px) {
+  .stage {
+    width: min(100%, 17rem);
+  }
+
+  .story {
+    grid-template-columns: minmax(0, 5.5rem) minmax(0, 1fr);
+    gap: 0.65rem;
+  }
+
+  .story-img,
+  .story .thumb-fallback.large {
+    height: 6rem;
+  }
+
+  .story-copy h2 {
+    font-size: 1.25rem;
+  }
+
+  .slider {
+    grid-template-columns: 1fr auto;
+  }
+
+  .slider input {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .lungs-live { animation: breathe 3.2s ease-in-out infinite; }
+  .heart-live { animation: beat 1.15s ease-in-out infinite; }
+  .pulse { animation: pingsoft 1.5s ease-out infinite; }
+  .shake { animation: shake 0.36s linear; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .figure-root,
+  .wash.on { animation: none; transition: none; }
+}
